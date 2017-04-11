@@ -3,24 +3,16 @@
 
 var db = require('./models');
 
-var personArray = [
-{
-  Name: String,
-  github_link: String,
-  github_profile_img: String,
-  current_city: String,
-  pets: [PetsSchema]
-}
-];
 
+/*
 var petArray = [
 {
-		name: Ziggy,
-		cuteness_level: Extreme,
+		name: "Ziggy",
+		cuteness_level: "Extreme",
 		img_url: String
 	},
 	{
-		name: Sophie,
+		name: "Sophie",
 		cuteness_level: "Really Great",
 		img_url: String
 	},
@@ -36,17 +28,36 @@ var petArray = [
 	},
 	];
 
-db.Person.remove({}, function(err, Person){
-	console.log('removed all imposters who are not people');
-	db.person.create(personArray, function(err, person){
+var moviesList = [
+{name: "Forrest Gump"},
+{name:"Blade Runner"}
+];
+*/
+
+var personArray = [
+{
+ Name: "Cole",
+  github_link: "https://github.com/CoolCode2",
+  github_profile_img: String,
+  current_city: "Littleton"
+  //pets: petArray[1],
+  //movies: moviesList
+}
+];
+
+
+
+
+
+	db.Person.create(personArray, function(err, person){
 		if (err){
 			console.log("clear db first: "+err);
 		} return;
-	}
+	});
 	console.log('recreated all people');
 	console.log("created", personArray.length, "peeps");
 	process.exit();
-});
+
  
 /*
  db.Author.remove({}, function(err, authors) {

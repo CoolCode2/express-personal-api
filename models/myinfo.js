@@ -1,17 +1,22 @@
 var mongoose = require('mongoose'),
  Schema = mongoose.Schema;
 
-
+/*
 var PetSchema = new Schema({
 		name: String,
 		cuteness_level: String
 	});
 
+var MovieSchema = new Schema ({
+	name: String
+});
+*/
 var PersonSchema = new Schema({
   github_link: String,
   github_profile_img: String,
-  current_city: String,
-  pets: [PetSchema]
+  current_city: String
+  //movies:[movieSchema],
+  //pets: [PetSchema]
 });
 
 

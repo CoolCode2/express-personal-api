@@ -107,7 +107,7 @@ app.delete('api/persons/:id', function (req,res){
  * SERVER *
  **********/
 
-// listen on port 3000
+// listen on port 9000
 app.listen(process.env.PORT || 9000, function () {
-  console.log('Express server is up and running on http://localhost:3000/');
+  console.log('Express server is up and running on http://localhost:9000/');
 });
