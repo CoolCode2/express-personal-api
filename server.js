@@ -7,13 +7,14 @@ var express = require('express'),
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.listen(process.env.PORT || 3000);
+//app.listen(process.env.PORT || 3000);
 
 /************
  * DATABASE *
  ************/
 
 // var db = require('./models');
+var db = require ('./models');
 
 /**********
  * ROUTES *
@@ -22,6 +23,7 @@ app.listen(process.env.PORT || 3000);
 // Serve static files from the `/public` directory:
 // i.e. `/images`, `/scripts`, `/styles`
 app.use(express.static('public'));
+//this line serves up everything in the public file to users
 
 /*
  * HTML Endpoints
@@ -48,14 +50,63 @@ app.get('/api', function api_index(req, res) {
       {method: "GET", path: "/api/profile", description: "Data about me"}, // CHANGE ME
       {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"} // CHANGE ME
     ]
-  })
+  });
 });
+/*
+//route route to the directory
+app.get('/', function(req,res){
+  res.sendFile('views/index.html' , {root: __dirname});
+});
+
+//get all books
+app.get('/api/persons', function (req,res){
+  //send all people as a JSON response
+  console.log('people index');
+
+  db.Person.find(function(err, Person){
+    if (err){return console.log("index err: "+err);}
+      res.json(person);
+  });
+});
+
+//get by id
+app.get('/api/persons/:id', function (req, res){
+  console.log('one people show', req.params);
+  for(var i = 0; i < personArray.length; i++){
+    if (persons[i]._id === req.params.id){
+      res.json(persons[i]);
+      break;
+    }
+  }
+});
+
+//put
+
+
+//post 
+app.post('api/persons/:person_id')
+
+//delete
+app.delete('api/persons/:id', function (req,res){
+  console.log('person delete', req.params);
+  var personId = req.params.id;
+
+   var deletePersonIndex = persons.findIndex(function(element, index) {
+    return (element._id === parseInt(req.params.id)); //params are strings
+  });
+  console.log('deleting person with index', deleteBookIndex);
+  var personToDelete = persons[deletePersonIndex];
+  persons.splice(deletePersonIndex, 1);
+  res.json(personToDelete);
+});
+
+*/
 
 /**********
  * SERVER *
  **********/
 
 // listen on port 3000
-app.listen(process.env.PORT || 3000, function () {
+app.listen(process.env.PORT || 9000, function () {
   console.log('Express server is up and running on http://localhost:3000/');
 });
