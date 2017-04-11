@@ -52,13 +52,13 @@ app.get('/api', function api_index(req, res) {
     ]
   });
 });
-/*
+
 //route route to the directory
 app.get('/', function(req,res){
   res.sendFile('views/index.html' , {root: __dirname});
 });
 
-//get all books
+//get all people
 app.get('/api/persons', function (req,res){
   //send all people as a JSON response
   console.log('people index');
@@ -69,6 +69,7 @@ app.get('/api/persons', function (req,res){
   });
 });
 
+/*
 //get by id
 app.get('/api/persons/:id', function (req, res){
   console.log('one people show', req.params);

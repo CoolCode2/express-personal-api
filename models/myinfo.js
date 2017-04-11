@@ -8,12 +8,13 @@ var PetSchema = new Schema({
 	});
 
 var PersonSchema = new Schema({
-  Name: Cole,
-  github_link: "https://github.com/CoolCode2",
+  github_link: String,
   github_profile_img: String,
-  current_city: Littleton,
-  pets: [PetsSchema]
+  current_city: String,
+  pets: [PetSchema]
 });
+
+
 //save our schemas in a var that we can export and use elsewhere
 var Person = mongoose.model('Person', PersonSchema); 
 module.exports = Person; //send Person out
