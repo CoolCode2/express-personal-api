@@ -33,10 +33,17 @@ app.get('/', function homepage(req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
+//this is the about me route
+app.get('/api/profile', function aboutMe(req,res){
+  //a
+  db.Person.find({}, function(err, persons){
+    console.log(persons);//goes to the terminal
+    res.json(persons); // goes to whomever sent the request
+  });
 
-/*
- * JSON API Endpoints
- */
+
+  
+});
 
 app.get('/api', function api_index(req, res) {
   // TODO: Document all your api endpoints below
