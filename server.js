@@ -33,7 +33,7 @@ app.get('/', function homepage(req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-//this is the about me route
+//this is the about me route THIS IS WORKING
 app.get('/api/profile', function aboutMe(req,res){
   //a
   db.Person.find({}, function(err, persons){
@@ -41,6 +41,12 @@ app.get('/api/profile', function aboutMe(req,res){
     res.json(persons); // goes to whomever sent the request
   });
 
+//get all the movies
+app.get('/api/movies', function getAllMovies(err, res){
+  db.Movie.find({}, function(err,persons){
+    console.log(movie);
+  });
+});
 
   
 });
@@ -61,6 +67,7 @@ app.get('/api', function api_index(req, res) {
 });
 
 //route route to the directory
+// this is working 
 app.get('/', function(req,res){
   res.sendFile('views/index.html' , {root: __dirname});
 });

@@ -6,6 +6,6 @@ mongoose.connect( process.env.MONGODB_URI ||
 					///makes db called personal-api
 
  
-    module.exports.Person = require("./myinfo.js");
-
-// module.exports.Campsite = require("./campsite.js.example");
+module.exports.Person = require("./myinfo.js");
+module.exports.Pet = require("./Pet.js");
+module.exports.Movie = require("./Movie.js");

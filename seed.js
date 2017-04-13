@@ -2,7 +2,7 @@
 // simply run: `node seed.js` from the root of this project folder.
 
 var db = require('./models');
-
+//myinfo.js is being required here
 
 
 var petArray = [
@@ -28,7 +28,7 @@ var petArray = [
 	},
 	];
 
-var moviesList = [
+var movieArray = [
 {name: "Forrest Gump"},
 {name:"Blade Runner"}
 ];
@@ -39,9 +39,8 @@ var personArray = [
   name: "Smauel Jackson",
   github_link: "https://github.com/CoolCode2",
   github_profile_img: String,
-  current_city: "Littleton",
-  pets: petArray,
-  movies: moviesList
+  current_city: "Littleton"
+ 
 }
 ];
 
@@ -50,16 +49,35 @@ db.Person.remove({}, function(err, books){
 		console.log('Error occurred in remove', err);
 	} 
 	else {
-	    console.log('removed all books');
+	    console.log('removed all people');
 
-		db.Person.create(personArray, function(err, person){
+
+		db.Movie.create(movieArray, function(err, movie){
 			if (err){
 				console.log(err);
 			} 
-			console.log('recreated all people');
-			console.log("created", personArray.length, "peeps");
+			console.log("created", movieArray.length, "flicks");
+			
+});
+		
+
+		db.Pet.create(petArray, function(err, movie){
+			if (err){
+				console.log(err);
+			} 
+			console.log("created", petArray.length, "pets");
 			process.exit();
-		});
+});
+
+
+		// db.Person.create(personArray, function(err, movie){
+			// if (err){
+				// console.log(err);
+			// } 
+			// console.log('recreated all people');
+			// console.log("created", personArray.length, "peeps");
+			// process.exit();
+		// });
 	}
 });
 	
