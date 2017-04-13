@@ -43,42 +43,56 @@ var personArray = [
  
 }
 ];
-
-db.Person.remove({}, function(err, books){
-	if(err) {
+////////////////////////////////// people
+db.Person.remove({}, function(err, books) {
+	if (err) {
 		console.log('Error occurred in remove', err);
-	} 
-	else {
-	    console.log('removed all people');
-
-
-		db.Movie.create(movieArray, function(err, movie){
-			if (err){
+	} else {
+		console.log('removed all people');
+		db.Person.create(personArray, function(err, movie) {
+			if (err) {
 				console.log(err);
-			} 
-			console.log("created", movieArray.length, "flicks");
+			}
+			console.log("created", personArray.length, "peeps");
 			
-});
-		
 
-		db.Pet.create(petArray, function(err, movie){
-			if (err){
-				console.log(err);
-			} 
-			console.log("created", petArray.length, "pets");
-			process.exit();
-});
-
-
-		// db.Person.create(personArray, function(err, movie){
-			// if (err){
-				// console.log(err);
-			// } 
-			// console.log('recreated all people');
-			// console.log("created", personArray.length, "peeps");
-			// process.exit();
-		// });
+		});
 	}
+
+});
+///////////////////////////////// pets
+db.Pet.remove({}, function(err, books) {
+	if (err) {
+		console.log('Error occurred in remove', err);
+	} else {
+		console.log('removed all pets');
+		db.Pet.create(petArray, function(err, movie) {
+			if (err) {
+				console.log(err);
+			}
+			console.log("created", petArray.length, "pets");
+			
+
+		});
+	}
+	
+});
+/////////////////////////////// movies
+db.Movie.remove({}, function(err, books) {
+	if (err) {
+		console.log('Error occurred in remove', err);
+	} else {
+		console.log('removed all movies');
+		db.Movie.create(movieArray, function(err, movie) {
+			if (err) {
+				console.log(err);
+			}
+			console.log("created", movieArray.length, "flicks");
+			process.exit();
+
+		});
+	}
+	
 });
 	
 
