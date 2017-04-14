@@ -9,4 +9,10 @@ var PetSchema = new Schema({
 	});
 
 var Pet = mongoose.model('Pet', PetSchema);
-module.exports = Pet;
+exports.Pet = Pet; //exports the Pet Variable
+exports.PetSchema= PetSchema; // exports PetSchema
+
+// crudable resource is an entireley different schema!!!
+
+//have pets and movies embedded into my resource
+

@@ -2,19 +2,26 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 
+var moviesVar = require('./Movie.js');
+var petsVar = require('./Pet.js');
 
 
-var MovieSchema = new Schema ({
-	name: String
-});
+// var Movie = mongoose.model('Movie', MovieSchema);
+// var Pet = mongoose.model('Pet', PetSchema);
+var PetSchema = new Schema({
+		name: String,
+		cuteness_level: String,
+		img_url: String
+
+	});
 
 var PersonSchema = new Schema({
   name: String,
   github_link: String,
   github_profile_img: String,
-  current_city: String
-  //movies: [MovieSchema],
- // pets: [PetSchema]
+  current_city: String,
+  movies: [moviesVar.MovieSchema],
+ pets: [petsVar.PetSchema]
 });
 
 
@@ -22,7 +29,8 @@ var PersonSchema = new Schema({
 
 
 var Person = mongoose.model('Person', PersonSchema); 
-
+// module.exports = Pet;
+// module.exports = Movie;
 module.exports = Person;
 
 //'persons' should be the name of the collection

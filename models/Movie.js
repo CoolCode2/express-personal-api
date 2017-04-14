@@ -5,6 +5,6 @@ var MovieSchema = new Schema ({
 	name: String
 });
 
-
 var Movie = mongoose.model('Movie', MovieSchema);
-module.exports = Movie;
+exports.Movie = Movie;
+exports.MovieSchema= MovieSchema;

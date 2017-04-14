@@ -2,6 +2,10 @@
 // simply run: `node seed.js` from the root of this project folder.
 
 var db = require('./models');
+
+
+//var petsVar = require('./Pet.js');
+//var moviesVar = require('./Movie.js');
 //myinfo.js is being required here
 
 
@@ -39,12 +43,14 @@ var personArray = [
   name: "Smauel Jackson",
   github_link: "https://github.com/CoolCode2",
   github_profile_img: String,
-  current_city: "Littleton"
+  current_city: "Littleton",
+ movies: movieArray,
+ pets: petArray
  
 }
 ];
 ////////////////////////////////// people
-db.Person.remove({}, function(err, books) {
+db.Person.remove({}, function(err, movie) {
 	if (err) {
 		console.log('Error occurred in remove', err);
 	} else {
@@ -53,47 +59,53 @@ db.Person.remove({}, function(err, books) {
 			if (err) {
 				console.log(err);
 			}
-			console.log("created", personArray.length, "peeps");
-			
-
-		});
-	}
-
-});
-///////////////////////////////// pets
-db.Pet.remove({}, function(err, books) {
-	if (err) {
-		console.log('Error occurred in remove', err);
-	} else {
-		console.log('removed all pets');
-		db.Pet.create(petArray, function(err, movie) {
-			if (err) {
-				console.log(err);
+			else {
+				console.log("created", personArray.length, "peeps");
 			}
-			console.log("created", petArray.length, "pets");
 			
-
+			///this is spelled right and works with people. but not with pets
+		});
+		//get from db
+		db.Person.find({}, function(err, p){
+			console.log(p);
 		});
 	}
-	
+
 });
+/////////////////////////////// pets
+// db.Pet.remove({}, function(err, books) {
+// 	if (err) {
+// 		console.log('Error occurred in remove', err);
+// 	} else {
+// 		console.log('removed all pets');
+// 		db.Pet.create(petArray, function(err, movie) {
+// 			if (err) {
+// 				console.log(err);
+// 			}
+// 			console.log("created", petArray.length, "pets");
+			
+
+// 		});
+// 	}
+	
+// });
 /////////////////////////////// movies
-db.Movie.remove({}, function(err, books) {
-	if (err) {
-		console.log('Error occurred in remove', err);
-	} else {
-		console.log('removed all movies');
-		db.Movie.create(movieArray, function(err, movie) {
-			if (err) {
-				console.log(err);
-			}
-			console.log("created", movieArray.length, "flicks");
-			process.exit();
+// db.Movie.remove({}, function(err, books) {
+// 	if (err) {
+// 		console.log('Error occurred in remove', err);
+// 	} else {
+// 		console.log('removed all movies');
+// 		db.Movie.create(movieArray, function(err, movie) {
+// 			if (err) {
+// 				console.log(err);
+// 			}
+// 			console.log("created", movieArray.length, "flicks");
+// 			process.exit();
 
-		});
-	}
+// 		});
+// 	}
 	
-});
+// });
 	
 
  

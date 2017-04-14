@@ -5,7 +5,9 @@ var express = require('express'),
 // parse incoming urlencoded form data
 // and populate the req.body object
 var bodyParser = require('body-parser');
+//body parser config to accept our datatypes
 app.use(bodyParser.urlencoded({ extended: true }));
+//
 app.use(bodyParser.json());
 //app.listen(process.env.PORT || 3000);
 
@@ -34,19 +36,16 @@ app.get('/', function homepage(req, res) {
 });
 
 //this is the about me route THIS IS WORKING
+// 'peeps' is whatever gets passed in from the mongodb
 app.get('/api/profile', function aboutMe(req,res){
   //a
-  db.Person.find({}, function(err, persons){
-    console.log(persons);//goes to the terminal
-    res.json(persons); // goes to whomever sent the request
+  db.Person.find({}, function(err, peeps){
+    console.log(peeps);//goes to the terminal
+    res.json(peeps); // goes to whomever sent the request
+
   });
 
-//get all the movies
-app.get('/api/movies', function getAllMovies(err, res){
-  db.Movie.find({}, function(err,persons){
-    console.log(movie);
-  });
-});
+
 
   
 });
@@ -54,14 +53,17 @@ app.get('/api/movies', function getAllMovies(err, res){
 app.get('/api', function api_index(req, res) {
   // TODO: Document all your api endpoints below
   res.json({
-    woops_i_has_forgot_to_document_all_my_endpoints: true, // CHANGE ME ;)
+    woops_i_has_forgot_to_document_all_my_endpoints: false, // CHANGE ME ;)
     message: "Welcome to my personal api! Here's what you need to know!",
     documentation_url: "https://github.com/example-username/express_self_api/README.md", // CHANGE ME
     base_url: "http://YOUR-APP-NAME.herokuapp.com", // CHANGE ME
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
       {method: "GET", path: "/api/profile", description: "Data about me"}, // CHANGE ME
-      {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"} // CHANGE ME
+      {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"},
+      {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"},
+      {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"}
+       // CHANGE ME
     ]
   });
 });
@@ -77,8 +79,8 @@ app.get('/api/persons', function (req,res){
   //send all people as a JSON response
   console.log('people index');
 
-  db.Person.find(function(err, Person){
-    if (err){return console.log("index err: "+err);}
+  db.Person.find(function(err, person){
+    if (err){return console.log("index err: "+ err);}
       res.json(person);
   });
 });
