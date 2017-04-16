@@ -2,9 +2,12 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var MovieSchema = new Schema ({
-	name: String
+	_id: String,
+	name: String,
+	rating: String
 });
 
 var Movie = mongoose.model('Movie', MovieSchema);
-exports.Movie = Movie;
-exports.MovieSchema= MovieSchema;
+module.exports = Movie;
+//exports.Movie = Movie;
+//exports.MovieSchema= MovieSchema;

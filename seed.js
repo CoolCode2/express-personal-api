@@ -9,69 +9,54 @@ var db = require('./models');
 //myinfo.js is being required here
 
 
-var petArray = [
-{
-		name: "Ziggy",
-		cuteness_level: "Extreme",
-		img_url: String
-	},
-	{
-		name: "Sophie",
-		cuteness_level: "Really Great",
-		img_url: String
-	},
-	{
-		name: "Coco",
-		cuteness_level: "Exceptional",
-		img_url: String
-	},
-	{
-		name: "Winnie",
-		cuteness_level: "Maximum",
-		img_url: String
-	},
-	];
+
 
 var movieArray = [
-{name: "Forrest Gump"},
-{name:"Blade Runner"}
+{_id: 1, name: "Forrest Gump", rating:"want my money back"},
+{_id: 2, name:"Blade Runner", rating:"B+"},
+{_id: 3, name: "Fast & the Furious 13", rating:"Excellent"},
+{_id: 4, name:"bruno", rating:"Very Funny"},
+{_id: 5, name: "Crash", rating:"Yikes!"},
+{_id: 6, name:"Dances With Wolves", rating:"Classic"}
 ];
 
-
-var personArray = [
-{
-  name: "Smauel Jackson",
-  github_link: "https://github.com/CoolCode2",
-  github_profile_img: String,
-  current_city: "Littleton",
- movies: movieArray,
- pets: petArray
+// adds me to the db with the pets and movies array
+// var personArray = [
+// {
+//   name: "Smauel Jackson",
+//   github_link: "https://github.com/CoolCode2",
+//   github_profile_img: String,
+//   current_city: "Littleton",
+//  movies: movieArray,
+//  pets: petArray
  
-}
-];
+// }
+// ];
 ////////////////////////////////// people
-db.Person.remove({}, function(err, movie) {
+db.Movie.remove({}, function(err, movie) {
 	if (err) {
 		console.log('Error occurred in remove', err);
 	} else {
-		console.log('removed all people');
-		db.Person.create(personArray, function(err, movie) {
+		console.log('removed all flicks');
+		db.Movie.create(movieArray, function(err, movie) {
 			if (err) {
 				console.log(err);
 			}
 			else {
-				console.log("created", personArray.length, "peeps");
+				console.log("created", movieArray.length, "films");
 			}
 			
 			///this is spelled right and works with people. but not with pets
 		});
-		//get from db
-		db.Person.find({}, function(err, p){
-			console.log(p);
-		});
 	}
-
 });
+		//get from db
+	// 	db.Person.find({}, function(err, p){
+	// 		console.log(p);
+	// 	});
+	// }
+
+
 /////////////////////////////// pets
 // db.Pet.remove({}, function(err, books) {
 // 	if (err) {
