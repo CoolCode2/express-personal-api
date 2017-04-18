@@ -41,7 +41,7 @@ app.use(express.static('public'));
 /*
  * HTML Endpoints
  */
-
+///serves up home page
 app.get('/', function homepage(req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
@@ -67,7 +67,7 @@ app.get('/api', function api_index(req, res) {
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
       {method: "GET", path: "/api/profile", description: "My personal Info"},
-       {method: "GET", path: "/api/movies", description: "Get All movies"},  
+      {method: "GET", path: "/api/movies", description: "Get All movies"},  
       {method: "GET", path: "/api/movies/:id", description: "get one movie by id"},
       {method: "PUT", path: "/api/movies/:id", description: "Update a movie"},
       {method: "POST", path: "/api/movies", description: "Add a new Movie"},
@@ -89,11 +89,7 @@ app.get('/api/movies', function (req,res){
     //console.log(finefilms);
     res.json(finefilms);
   });
-  
-  //db.Person.find(function(err, person){
-    //if (err){return console.log("index err: "+ err);}
-      //res.json(person);
-  });
+});
 
 
 // GET MOVIE BY ID!!! ///THIS iS WORKING
@@ -114,45 +110,58 @@ app.get('/api/movies/:id', function(req,res){
 //   }
 // });
 
-//post a new mov
+//post a new mov //WORKING creates a new Movie
 app.post('/api/movies', function(req,res){
-  
+        //res.json("JSON req.body._id:   "+ req.body._id);
   var postMov = new db.Movie
     ({
-    _id: req.body.id,
+    _id: req.body._id,
     name: req.body.name,
     rating: req.body.rating
-      
-    });
+      });
+      //res.json(postMov); // works: gets the ID
       //res.json(req.body.id); // .id cant have underline
-
+      
+//save movies to the db
     postMov.save(function(err, mov){
-          res.json(mov+"was added");
+          res.json(mov);
 
   });
   
 });
 
 //update a mov
-app.put('/api/movies/:id', function(req,res){
-  console.log ("put route");
-  db.Movie.findOne({_id: req.params.id}, function(err, mov){
-    console.log(Movie);
-    Movie.id = req.body.id;
-    Movie.name = req.body.name;
-    Movie.rating = req.body.rating;
-
-  });
-  Movie.save(function(err, mov){
+app.put('/api/movies/:num', function(req,res){
+  //res.json(req.body._id);//gives id of the req.body coming in
+  db.Movie.findOne({_id: req.params.num}, function(err, mov){
+    //console.log("req.body  "+req.body.name); // this is the info coming in
+    //console.log("mov var  "+mov);// this returns the movie with the right id that's already in the db
+    console.log("in DataBase = "+ mov.id + " ,incoming = " +req.body._id);
     console.log(mov);
-    console.log("updated ", movie.id);
+    mov._id = req.body._id;
+    mov.name = req.body.name;
+    mov.rating = req.body.rating;
+        console.log(mov);
+
+    mov.save(function(err, saveMov){
+      if(err) {
+        res.json("err");
+      }
+      res.json(saveMov);
+    });
   });
+
+
+  // update.save(function(err, mov){
+  //   res.json(mov);
+  //   res.json("updated ", movie.id);
+  // });
       //res.json(req.body.id); // .id cant have underline
 
-    postMov.save(function(err, mov){
-          res.json(mov+"was added");
+    // postMov.save(function(err, mov){
+    //       res.json(mov+"was added");
 
-  });
+  // });
   
 });
 
